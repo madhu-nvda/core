@@ -37,27 +37,33 @@ enum Platform {
   PLATFORM_TENSORRT_PLAN = 1,
   PLATFORM_TENSORFLOW_GRAPHDEF = 2,
   PLATFORM_TENSORFLOW_SAVEDMODEL = 3,
-  PLATFORM_CAFFE2_NETDEF = 4
+  PLATFORM_CAFFE2_NETDEF = 4,
+  PLATFORM_CUSTOM = 5
 };
 
 // Get the size of a datatype in bytes. Return 0 if unable to
 // determine the size of the data type.
 size_t GetDataTypeByteSize(const DataType dtype);
 
-// Get the size of a tensor based on datatype and dimensions. Return 0
+// Get the size, in bytes, of a tensor based on datatype and
+// dimensions. Return 0 if unable to determine the size of the data
+// type.
+uint64_t GetByteSize(const DataType& dtype, const DimsList& dims);
+
+// Get the size, in bytes, of a tensor based on ModelInput. Return 0
 // if unable to determine the size of the data type.
-uint64_t GetSize(const DataType& dtype, const DimsList& dims);
+uint64_t GetByteSize(const ModelInput& mio);
 
-// Get the size of a tensor based on ModelInput. Return 0 if unable to
-// determine the size of the data type.
-uint64_t GetSize(const ModelInput& mio);
-
-// Get the size of a tensor based on ModelOutput. Return 0 if unable
-// to determine the size of the data type.
-uint64_t GetSize(const ModelOutput& mio);
+// Get the size, in bytes, of a tensor based on ModelOutput. Return 0
+// if unable to determine the size of the data type.
+uint64_t GetByteSize(const ModelOutput& mio);
 
 // Get the Platform value for a platform string or Platform::UNKNOWN
 // if the platform string is not recognized.
 Platform GetPlatform(const std::string& platform_str);
+
+// Compare two model configuration shapes. Return true if equal, false
+// is not equal.
+bool CompareDims(const DimsList& dims0, const DimsList& dims1);
 
 }}  // namespace nvidia::inferenceserver
