@@ -23,25 +23,83 @@
 // OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#pragma once
 
 #include "src/core/status.h"
-#include "src/nvrpc/Server.h"
 
 namespace nvidia { namespace inferenceserver {
 
-class InferenceServer;
+const Status Status::Success(RequestStatusCode::SUCCESS);
 
-class GRPCServer : private nvrpc::Server {
- public:
-  static Status Create(
-      InferenceServer* server, uint16_t port,
-      std::unique_ptr<GRPCServer>* grpc_server);
-  Status Start();
-  Status Stop();
+RequestStatusCode
+Status::FromTFError(const int tf_code)
+{
+  switch (tf_code) {
+    case 0:  // tensorflow::error::OK
+      return RequestStatusCode::SUCCESS;
 
- private:
-  GRPCServer(const std::string& addr);
-};
+    case 3:  // tensorflow::error::INVALID_ARGUMENT
+      return RequestStatusCode::INVALID_ARG;
+
+    case 5:  // tensorflow::error::NOT_FOUND
+      return RequestStatusCode::NOT_FOUND;
+
+    case 6:  // tensorflow::error::ALREADY_EXISTS
+      return RequestStatusCode::NOT_FOUND;
+
+    case 14:  // tensorflow::error::UNAVAILABLE
+      return RequestStatusCode::UNAVAILABLE;
+
+    case 13:  // tensorflow::error::INTERNAL
+      return RequestStatusCode::INTERNAL;
+
+    default:
+      break;
+  }
+
+  return RequestStatusCode::UNKNOWN;
+}
+
+std::string
+Status::AsString() const
+{
+  std::string str;
+
+  switch (code_) {
+    case RequestStatusCode::INVALID:
+      str = "Invalid";
+      break;
+    case RequestStatusCode::SUCCESS:
+      str = "OK";
+      break;
+    case RequestStatusCode::UNKNOWN:
+      str = "Unknown";
+      break;
+    case RequestStatusCode::INTERNAL:
+      str = "Internal";
+      break;
+    case RequestStatusCode::NOT_FOUND:
+      str = "Not found";
+      break;
+    case RequestStatusCode::INVALID_ARG:
+      str = "Invalid argument";
+      break;
+    case RequestStatusCode::UNAVAILABLE:
+      str = "Unavailable";
+      break;
+    case RequestStatusCode::UNSUPPORTED:
+      str = "Unsupported";
+      break;
+    case RequestStatusCode::ALREADY_EXISTS:
+      str = "Already exists";
+      break;
+
+    default:
+      str = "Unknown status code (" + std::to_string(code_) + ")";
+      break;
+  }
+
+  str += ": " + msg_;
+  return str;
+}
 
 }}  // namespace nvidia::inferenceserver
