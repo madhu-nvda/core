@@ -23,37 +23,60 @@
 // OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#pragma once
 
-#include "src/core/status.h"
-#include "src/nvrpc/Interfaces.h"
-#include "src/nvrpc/Server.h"
+#include "src/core/filesystem.h"
+
+#include "tensorflow/core/lib/io/path.h"
+#include "tensorflow/core/platform/env.h"
 
 namespace nvidia { namespace inferenceserver {
 
-class InferenceServer;
-class RequestStatus;
-class ServerStatus;
+Status
+GetSubdirs(const std::string& path, std::set<std::string>* subdirs)
+{
+  std::vector<std::string> childs;
+  RETURN_IF_TF_ERROR(tensorflow::Env::Default()->GetChildren(path, &childs));
 
-class GRPCServer : private nvrpc::Server {
- public:
-  static Status Create(
-      InferenceServer* server, uint16_t port,
-      std::unique_ptr<GRPCServer>* grpc_server);
-  Status Start();
-  Status Stop();
+  // GetChildren() returns all descendants instead for cloud storage
+  // like GCS. In such case we should filter out all non-direct
+  // descendants.
+  std::set<std::string> real_childs;
+  for (const std::string& child : childs) {
+    real_childs.insert(child.substr(0, child.find_first_of('/')));
+  }
 
-  ~GRPCServer();
+  for (const auto& child : real_childs) {
+    const auto vp = tensorflow::io::JoinPath(path, child);
+    if (tensorflow::Env::Default()->IsDirectory(vp).ok()) {
+      subdirs->insert(child);
+    }
+  }
 
- private:
-  GRPCServer(const std::string& addr);
+  return Status::Success;
+}
 
-  nvrpc::IRPC* rpcInfer_;
-  nvrpc::IRPC* rpcStreamInfer_;
-  nvrpc::IRPC* rpcStatus_;
-  nvrpc::IRPC* rpcProfile_;
-  nvrpc::IRPC* rpcHealth_;
-  bool running_;
-};
+Status
+GetFiles(const std::string& path, std::set<std::string>* files)
+{
+  std::vector<std::string> childs;
+  RETURN_IF_TF_ERROR(tensorflow::Env::Default()->GetChildren(path, &childs));
+
+  // GetChildren() returns all descendants instead for cloud storage
+  // like GCS. In such case we should filter out all non-direct
+  // descendants.
+  std::set<std::string> real_childs;
+  for (const std::string& child : childs) {
+    real_childs.insert(child.substr(0, child.find_first_of('/')));
+  }
+
+  for (const auto& child : real_childs) {
+    const auto vp = tensorflow::io::JoinPath(path, child);
+    if (!tensorflow::Env::Default()->IsDirectory(vp).ok()) {
+      files->insert(child);
+    }
+  }
+
+  return Status::Success;
+}
 
 }}  // namespace nvidia::inferenceserver

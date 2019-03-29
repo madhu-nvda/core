@@ -25,19 +25,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma once
 
+#include <string>
 #include "src/core/status.h"
 
 namespace nvidia { namespace inferenceserver {
 
-class InferenceServer;
-
-class HTTPServer {
- public:
-  static Status Create(
-      InferenceServer* server, uint16_t port, int thread_cnt,
-      std::unique_ptr<HTTPServer>* http_server);
-  virtual Status Start() = 0;
-  virtual Status Stop() = 0;
-};
+Status GetSubdirs(const std::string& path, std::set<std::string>* subdirs);
+Status GetFiles(const std::string& path, std::set<std::string>* files);
 
 }}  // namespace nvidia::inferenceserver
