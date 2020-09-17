@@ -29,17 +29,17 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "src/core/infer_request.h"
-#include "src/core/infer_response.h"
-#include "src/core/memory.h"
-#include "src/core/model_config.h"
-#include "src/core/status.h"
+#include "infer_request.h"
+#include "infer_response.h"
+#include "memory.h"
+#include "model_config.h"
+#include "status.h"
 
 #ifdef TRITON_ENABLE_GPU
 #include <cuda_runtime_api.h>
 #endif  // TRITON_ENABLE_GPU
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 #ifndef TRITON_ENABLE_GPU
 using cudaStream_t = void*;
@@ -321,4 +321,4 @@ class BackendInputCollector {
   std::list<DeferredPinned> deferred_pinned_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

@@ -26,10 +26,10 @@
 #pragma once
 
 #include <functional>
-#include "src/core/infer_request.h"
-#include "src/core/status.h"
+#include "infer_request.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 // Scheduler interface.
 class Scheduler {
@@ -70,4 +70,4 @@ class Scheduler {
   virtual Status Enqueue(std::unique_ptr<InferenceRequest>& request) = 0;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

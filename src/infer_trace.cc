@@ -24,9 +24,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/infer_trace.h"
+#include "infer_trace.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 #ifdef TRITON_ENABLE_TRACING
 
@@ -44,4 +44,4 @@ InferenceTrace::Release(std::unique_ptr<InferenceTrace>&& trace)
 
 #endif  // TRITON_ENABLE_TRACING
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

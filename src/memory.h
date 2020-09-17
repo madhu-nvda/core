@@ -26,10 +26,10 @@
 #pragma once
 
 #include <vector>
-#include "src/core/constants.h"
-#include "src/core/status.h"
+#include "constants.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 //
 // Memory used to access data in inference requests
@@ -149,4 +149,4 @@ class AllocatedMemory : public MutableMemory {
   ~AllocatedMemory() override;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

@@ -26,11 +26,13 @@
 //
 #pragma once
 
+#ifdef TRITON_ENABLE_GPU
+
 #include <map>
 #include <memory>
-#include "src/core/status.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 // This is a singleton class responsible for maintaining CUDA memory pool
 // used by the inference server. CUDA memory allocations and deallocations
@@ -80,4 +82,6 @@ class CudaMemoryManager {
   static std::unique_ptr<CudaMemoryManager> instance_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
+
+#endif  // TRITON_ENABLE_GPU

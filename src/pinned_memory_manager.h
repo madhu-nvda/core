@@ -29,9 +29,9 @@
 #include <boost/interprocess/managed_external_buffer.hpp>
 #include <memory>
 #include <mutex>
-#include "src/core/status.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 // This is a singleton class responsible for maintaining pinned memory pool
 // used by the inference server. Pinned memory allocations and deallocations
@@ -83,4 +83,4 @@ class PinnedMemoryManager {
   boost::interprocess::managed_external_buffer managed_pinned_memory_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

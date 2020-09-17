@@ -33,11 +33,11 @@
 #include <thread>
 #include <vector>
 
-#include "src/core/model_config.pb.h"
-#include "src/core/model_repository_manager.h"
-#include "src/core/status.h"
+#include "model_config.pb.h"
+#include "model_repository_manager.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class InferenceBackend;
 class InferenceRequest;
@@ -254,4 +254,4 @@ class InferenceServer {
   std::unique_ptr<ModelRepositoryManager> model_repository_manager_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

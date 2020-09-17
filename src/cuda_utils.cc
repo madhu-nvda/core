@@ -24,12 +24,12 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/cuda_utils.h"
+#include "cuda_utils.h"
 
-#include "src/core/model_config_utils.h"
-#include "src/core/nvtx.h"
+#include "model_config_utils.h"
+#include "nvtx.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 Status
 EnablePeerAccess(const double min_compute_capability)
@@ -180,4 +180,4 @@ GetSupportedGPUs(
 
 #endif
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

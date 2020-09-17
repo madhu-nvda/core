@@ -24,7 +24,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/autofill.h"
+#include "autofill.h"
 
 #ifdef TRITON_ENABLE_CAFFE2
 #include "src/backends/caffe2/autofill.h"
@@ -41,11 +41,11 @@
 #ifdef TRITON_ENABLE_PYTORCH
 #include "src/backends/pytorch/autofill.h"
 #endif  // TRITON_ENABLE_PYTORCH
-#include "src/core/constants.h"
-#include "src/core/logging.h"
-#include "src/core/model_config.h"
+#include "constants.h"
+#include "logging.h"
+#include "model_config.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 //
 // AutoFillNull
@@ -279,4 +279,4 @@ AutoFill::Create(
   return Status::Success;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

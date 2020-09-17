@@ -24,30 +24,30 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/model_config_utils.h"
+#include "model_config_utils.h"
 
 #include <google/protobuf/util/json_util.h>
 #include <deque>
 #include <mutex>
 #include <set>
-#include "src/core/autofill.h"
-#include "src/core/constants.h"
-#include "src/core/cuda_utils.h"
-#include "src/core/filesystem.h"
-#include "src/core/logging.h"
+#include "autofill.h"
+#include "constants.h"
+#include "cuda_utils.h"
+#include "filesystem.h"
+#include "logging.h"
 
-#define TRITONJSON_STATUSTYPE nvidia::inferenceserver::Status
+#define TRITONJSON_STATUSTYPE triton::core::Status
 #define TRITONJSON_STATUSRETURN(M)        \
-  return nvidia::inferenceserver::Status( \
-      nvidia::inferenceserver::Status::Code::INTERNAL, (M))
-#define TRITONJSON_STATUSSUCCESS nvidia::inferenceserver::Status::Success
+  return triton::core::Status( \
+      triton::core::Status::Code::INTERNAL, (M))
+#define TRITONJSON_STATUSSUCCESS triton::core::Status::Success
 #include "triton/common/triton_json.h"
 
 #ifdef TRITON_ENABLE_GPU
 #include <cuda_runtime_api.h>
 #endif  // TRITON_ENABLE_GPU
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -1825,4 +1825,4 @@ JsonToModelConfig(
   return Status::Success;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

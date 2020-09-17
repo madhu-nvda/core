@@ -29,14 +29,14 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include "src/core/constants.h"
-#include "src/core/infer_parameter.h"
-#include "src/core/model_config.h"
-#include "src/core/response_allocator.h"
-#include "src/core/status.h"
+#include "constants.h"
+#include "infer_parameter.h"
+#include "model_config.h"
+#include "response_allocator.h"
+#include "status.h"
 #include "triton/core/tritonserver.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class InferenceBackend;
 class InferenceResponse;
@@ -309,4 +309,4 @@ std::ostream& operator<<(std::ostream& out, const InferenceResponse& response);
 std::ostream& operator<<(
     std::ostream& out, const InferenceResponse::Output& output);
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

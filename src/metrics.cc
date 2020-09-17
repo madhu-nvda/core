@@ -27,18 +27,18 @@
 
 #ifdef TRITON_ENABLE_METRICS
 
-#include "src/core/metrics.h"
+#include "metrics.h"
 
 #include <thread>
-#include "src/core/constants.h"
-#include "src/core/logging.h"
+#include "constants.h"
+#include "logging.h"
 
 #ifdef TRITON_ENABLE_METRICS_GPU
 #include <cuda_runtime_api.h>
 #include <nvml.h>
 #endif  // TRITON_ENABLE_METRICS_GPU
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 Metrics::Metrics()
     : registry_(std::make_shared<prometheus::Registry>()),
@@ -405,6 +405,6 @@ Metrics::GetSingleton()
   return &singleton;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
 
 #endif  // TRITON_ENABLE_METRICS

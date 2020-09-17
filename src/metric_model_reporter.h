@@ -25,14 +25,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma once
 
-#include "src/core/model_config.h"
-#include "src/core/status.h"
+#include "model_config.h"
+#include "status.h"
 
 #ifdef TRITON_ENABLE_METRICS
 #include "prometheus/registry.h"
 #endif  // TRITON_ENABLE_METRICS
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 //
 // Interface for a metric reporter for a given version of a model.
@@ -105,4 +105,4 @@ class MetricModelReporter {
 #endif  // TRITON_ENABLE_METRICS
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

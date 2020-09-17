@@ -30,6 +30,33 @@
 
 # Triton Inference Server Core
 
-Eventually this repo will contain the source for
-libtritonserver.so. But currently it just contains a couple of API
-header files.
+Triton Server Core is a shared library, *libtritonserver.so*, that
+includes all the core functionality of Triton, including scheduling,
+batching, model management, and backend management. The Triton core
+library provides a backwards-compatible C API that allows Triton to be
+linked directly into a C/C++ application. The API is documented in
+[tritonserver.h](include/triton/core/tritonserver.h).
+
+*FIXME add link to simple.cc example*
+
+To build first install the required dependencies.
+
+```
+$ apt-get install rapidjson-dev libprotobuf-dev libre2-dev libboost-dev libssl-dev libcurl4-openssl-dev
+
+```
+
+Use a recent cmake to build and install.
+
+```
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install ..
+$ make install
+```
+
+The following required Triton repositories will be pulled and used in
+the build. By default the "main" branch/tag will be used for each repo
+but the listed CMake argument can be used to override.
+
+* triton-inference-server/common: -DTRITON_COMMON_REPO_TAG=[tag]

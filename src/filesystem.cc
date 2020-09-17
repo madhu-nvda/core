@@ -24,7 +24,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/filesystem.h"
+#include "filesystem.h"
 
 #include <dirent.h>
 
@@ -51,11 +51,11 @@
 #include <unistd.h>
 #include <cerrno>
 #include <fstream>
-#include "src/core/constants.h"
-#include "src/core/logging.h"
-#include "src/core/status.h"
+#include "constants.h"
+#include "logging.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -1370,7 +1370,7 @@ ReadBinaryProto(const std::string& path, google::protobuf::MessageLite* msg)
 
   google::protobuf::io::CodedInputStream coded_stream(
       reinterpret_cast<const uint8_t*>(msg_str.c_str()), msg_str.size());
-  coded_stream.SetTotalBytesLimit(INT_MAX, INT_MAX);
+  coded_stream.SetTotalBytesLimit(INT_MAX);
   if (!msg->ParseFromCodedStream(&coded_stream)) {
     return Status(
         Status::Code::INTERNAL, "Can't parse " + path + " as binary proto");
@@ -1379,4 +1379,4 @@ ReadBinaryProto(const std::string& path, google::protobuf::MessageLite* msg)
   return Status::Success;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

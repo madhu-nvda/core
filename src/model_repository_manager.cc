@@ -25,19 +25,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#include "src/core/model_repository_manager.h"
+#include "model_repository_manager.h"
 
 #include <algorithm>
 #include <deque>
 #include <future>
 #include <stdexcept>
 #include <thread>
-#include "src/core/backend.h"
-#include "src/core/constants.h"
-#include "src/core/ensemble_utils.h"
-#include "src/core/filesystem.h"
-#include "src/core/logging.h"
-#include "src/core/model_config_utils.h"
+#include "backend.h"
+#include "constants.h"
+#include "ensemble_utils.h"
+#include "filesystem.h"
+#include "logging.h"
+#include "model_config_utils.h"
 
 #ifdef TRITON_ENABLE_GPU
 #include <cuda_runtime_api.h>
@@ -60,7 +60,7 @@
 #include "src/backends/tensorrt/plan_backend_factory.h"
 #endif  // TRITON_ENABLE_TENSORRT
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 const std::string&
 ModelReadyStateString(ModelReadyState state)
@@ -1931,4 +1931,4 @@ ModelRepositoryManager::VersionsToLoad(
   return Status::Success;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

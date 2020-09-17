@@ -26,13 +26,13 @@
 #pragma once
 
 #include <set>
-#include "src/core/status.h"
+#include "status.h"
 
 #ifdef TRITON_ENABLE_GPU
 #include <cuda_runtime_api.h>
 #endif  // TRITON_ENABLE_GPU
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 #ifdef TRITON_ENABLE_GPU
 #define RETURN_IF_CUDA_ERR(X, MSG)                                           \
@@ -93,4 +93,4 @@ Status GetSupportedGPUs(
     std::set<int>* supported_gpus, const double min_compute_capability);
 #endif
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

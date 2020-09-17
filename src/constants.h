@@ -27,51 +27,37 @@
 
 #include <stdint.h>
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 constexpr char kInferHeaderContentLengthHTTPHeader[] =
     "Inference-Header-Content-Length";
 
-#ifdef TRITON_ENABLE_TENSORFLOW
 constexpr char kTensorFlowGraphDefPlatform[] = "tensorflow_graphdef";
 constexpr char kTensorFlowSavedModelPlatform[] = "tensorflow_savedmodel";
 constexpr char kTensorFlowGraphDefFilename[] = "model.graphdef";
 constexpr char kTensorFlowSavedModelFilename[] = "model.savedmodel";
 constexpr char kTensorFlowBackend[] = "tensorflow";
-#endif  // TRITON_ENABLE_TENSORFLOW
 
-#ifdef TRITON_ENABLE_TENSORRT
 constexpr char kTensorRTPlanPlatform[] = "tensorrt_plan";
 constexpr char kTensorRTPlanFilename[] = "model.plan";
 constexpr char kTensorRTBackend[] = "tensorrt";
-#endif  // TRITON_ENABLE_TENSORRT
 
-#ifdef TRITON_ENABLE_CAFFE2
 constexpr char kCaffe2NetDefPlatform[] = "caffe2_netdef";
 constexpr char kCaffe2NetDefFilename[] = "model.netdef";
 constexpr char kCaffe2NetDefInitFilenamePrefix[] = "init_";
-#endif  // TRITON_ENABLE_CAFFE2
 
-#ifdef TRITON_ENABLE_ONNXRUNTIME
 constexpr char kOnnxRuntimeOnnxPlatform[] = "onnxruntime_onnx";
 constexpr char kOnnxRuntimeOnnxFilename[] = "model.onnx";
 constexpr char kOnnxRuntimeBackend[] = "onnxruntime";
-#endif  // TRITON_ENABLE_ONNXRUNTIME
 
-#ifdef TRITON_ENABLE_PYTORCH
 constexpr char kPyTorchLibTorchPlatform[] = "pytorch_libtorch";
 constexpr char kPyTorchLibTorchFilename[] = "model.pt";
 constexpr char kPyTorchBackend[] = "pytorch";
-#endif  // TRITON_ENABLE_PYTORCH
 
-#ifdef TRITON_ENABLE_CUSTOM
 constexpr char kCustomPlatform[] = "custom";
 constexpr char kCustomFilename[] = "libcustom.so";
-#endif  // TRITON_ENABLE_CUSTOM
 
-#ifdef TRITON_ENABLE_ENSEMBLE
 constexpr char kEnsemblePlatform[] = "ensemble";
-#endif  // TRITON_ENABLE_ENSEMBLE
 
 constexpr char kTensorRTExecutionAccelerator[] = "tensorrt";
 constexpr char kOpenVINOExecutionAccelerator[] = "openvino";
@@ -94,9 +80,9 @@ constexpr int SCHEDULER_DEFAULT_NICE = 5;
 constexpr uint64_t SEQUENCE_IDLE_DEFAULT_MICROSECONDS = 1000 * 1000;
 
 #define TIMESPEC_TO_NANOS(TS) \
-  ((TS).tv_sec * nvidia::inferenceserver::NANOS_PER_SECOND + (TS).tv_nsec)
+  ((TS).tv_sec * triton::core::NANOS_PER_SECOND + (TS).tv_nsec)
 #define TIMESPEC_TO_MILLIS(TS) \
-  (TIMESPEC_TO_NANOS(TS) / nvidia::inferenceserver::NANOS_PER_MILLIS)
+  (TIMESPEC_TO_NANOS(TS) / triton::core::NANOS_PER_MILLIS)
 
 #define DISALLOW_MOVE(TypeName) TypeName(Context&& o) = delete;
 #define DISALLOW_COPY(TypeName) TypeName(const TypeName&) = delete;
@@ -105,4 +91,4 @@ constexpr uint64_t SEQUENCE_IDLE_DEFAULT_MICROSECONDS = 1000 * 1000;
   DISALLOW_COPY(TypeName)                  \
   DISALLOW_ASSIGN(TypeName)
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

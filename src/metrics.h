@@ -34,7 +34,7 @@
 #include "prometheus/serializer.h"
 #include "prometheus/text_serializer.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class Metrics {
  public:
@@ -161,6 +161,6 @@ class Metrics {
   bool gpu_metrics_enabled_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
 
 #endif  // TRITON_ENABLE_METRICS

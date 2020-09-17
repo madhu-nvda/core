@@ -24,7 +24,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/server.h"
+#include "server.h"
 
 #include <stdint.h>
 #include <time.h>
@@ -36,22 +36,22 @@
 #include <utility>
 #include <vector>
 
-#include "src/core/backend.h"
-#include "src/core/constants.h"
-#include "src/core/cuda_utils.h"
-#include "src/core/logging.h"
-#include "src/core/model_config.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/model_config_utils.h"
-#include "src/core/model_repository_manager.h"
-#include "src/core/pinned_memory_manager.h"
-#include "src/core/server.h"
+#include "backend.h"
+#include "constants.h"
+#include "cuda_utils.h"
+#include "logging.h"
+#include "model_config.h"
+#include "model_config.pb.h"
+#include "model_config_utils.h"
+#include "model_repository_manager.h"
+#include "pinned_memory_manager.h"
+#include "server.h"
 
 #ifdef TRITON_ENABLE_GPU
-#include "src/core/cuda_memory_manager.h"
+#include "cuda_memory_manager.h"
 #endif  // TRITON_ENABLE_GPU
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -456,4 +456,4 @@ InferenceServer::UnloadModel(const std::string& model_name)
   return model_repository_manager_->LoadUnloadModel(model_name, action_type);
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

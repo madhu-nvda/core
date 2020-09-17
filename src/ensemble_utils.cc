@@ -26,14 +26,14 @@
 
 #ifdef TRITON_ENABLE_ENSEMBLE
 
-#include "src/core/ensemble_utils.h"
+#include "ensemble_utils.h"
 
 #include <set>
-#include "src/core/constants.h"
-#include "src/core/logging.h"
-#include "src/core/model_config_utils.h"
+#include "constants.h"
+#include "logging.h"
+#include "model_config_utils.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -430,6 +430,6 @@ ValidateEnsembleConfig(
   }
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
 
 #endif  // TRITON_ENABLE_ENSEMBLE

@@ -24,11 +24,11 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/model_config_cuda.h"
+#include "model_config_cuda.h"
 
 #include <cuda_runtime_api.h>
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 int
 GetCudaStreamPriority(
@@ -58,4 +58,4 @@ GetCudaStreamPriority(
   return cuda_stream_priority;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

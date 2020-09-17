@@ -26,9 +26,9 @@
 #pragma once
 
 #include <stdint.h>
-#include "src/core/model_config.pb.h"
+#include "model_config.pb.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 /// Get the CUDA stream priority for a given ModelPriority
 /// \param priority The inference::ModelOptimizationPolicy::ModelPriority
@@ -37,4 +37,4 @@ namespace nvidia { namespace inferenceserver {
 int GetCudaStreamPriority(
     inference::ModelOptimizationPolicy::ModelPriority priority);
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

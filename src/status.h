@@ -28,7 +28,7 @@
 #include <string>
 #include "triton/core/tritonserver.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class Status {
  public:
@@ -106,4 +106,4 @@ TRITONSERVER_Error_Code StatusCodeToTritonCode(Status::Code status_code);
     }                                                            \
   } while (false)
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

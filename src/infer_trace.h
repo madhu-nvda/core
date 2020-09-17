@@ -28,11 +28,11 @@
 #include <time.h>
 #include <atomic>
 #include <memory>
-#include "src/core/constants.h"
-#include "src/core/status.h"
+#include "constants.h"
+#include "status.h"
 #include "triton/core/tritonserver.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 #ifdef TRITON_ENABLE_TRACING
 
@@ -126,4 +126,4 @@ class InferenceTrace {
 #define INFER_TRACE_ACTIVITY_NOW(T, A)
 #endif  // TRITON_ENABLE_TRACING
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

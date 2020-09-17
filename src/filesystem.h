@@ -30,9 +30,9 @@
 #include <unistd.h>
 #include <string>
 #include "google/protobuf/message.h"
-#include "src/core/status.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 // This class stores the paths of local temporary files needed for loading
 // models from Cloud repositories and performs necessary cleanup after the
@@ -170,4 +170,4 @@ Status WriteTextProto(
 Status ReadBinaryProto(
     const std::string& path, google::protobuf::MessageLite* msg);
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

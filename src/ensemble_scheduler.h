@@ -28,17 +28,17 @@
 #ifdef TRITON_ENABLE_ENSEMBLE
 
 #include <memory>
-#include "src/core/metric_model_reporter.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/model_config_utils.h"
-#include "src/core/scheduler.h"
-#include "src/core/status.h"
+#include "metric_model_reporter.h"
+#include "model_config.pb.h"
+#include "model_config_utils.h"
+#include "scheduler.h"
+#include "status.h"
 
 #ifdef TRITON_ENABLE_GPU
 #include <cuda_runtime_api.h>
 #endif  // TRITON_ENABLE_GPU
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 #ifndef TRITON_ENABLE_GPU
 using cudaStream_t = void*;
@@ -106,6 +106,6 @@ class EnsembleScheduler : public Scheduler {
   cudaStream_t stream_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
 
 #endif  // TRITON_ENABLE_ENSEMBLE

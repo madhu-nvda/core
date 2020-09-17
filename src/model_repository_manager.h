@@ -29,11 +29,11 @@
 #include <functional>
 #include <map>
 #include <mutex>
-#include "src/core/model_config.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/status.h"
+#include "model_config.h"
+#include "model_config.pb.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class InferenceServer;
 class InferenceBackend;
@@ -332,4 +332,4 @@ class ModelRepositoryManager {
   std::unique_ptr<BackendLifeCycle> backend_life_cycle_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

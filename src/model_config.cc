@@ -24,11 +24,11 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/model_config.h"
+#include "model_config.h"
 
-#include "src/core/constants.h"
+#include "constants.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 bool
 IsFixedSizeDataType(const inference::DataType dtype)
@@ -208,50 +208,36 @@ GetByteSize(const inference::ModelOutput& mio)
 Platform
 GetPlatform(const std::string& platform_str)
 {
-#ifdef TRITON_ENABLE_TENSORFLOW
   if (platform_str == kTensorFlowGraphDefPlatform) {
     return Platform::PLATFORM_TENSORFLOW_GRAPHDEF;
   }
   if (platform_str == kTensorFlowSavedModelPlatform) {
     return Platform::PLATFORM_TENSORFLOW_SAVEDMODEL;
   }
-#endif  // TRITON_ENABLE_TENSORFLOW
 
-#ifdef TRITON_ENABLE_TENSORRT
   if (platform_str == kTensorRTPlanPlatform) {
     return Platform::PLATFORM_TENSORRT_PLAN;
   }
-#endif  // TRITON_ENABLE_TENSORRT
 
-#ifdef TRITON_ENABLE_CAFFE2
   if (platform_str == kCaffe2NetDefPlatform) {
     return Platform::PLATFORM_CAFFE2_NETDEF;
   }
-#endif  // TRITON_ENABLE_CAFFE2
 
-#ifdef TRITON_ENABLE_CUSTOM
   if (platform_str == kCustomPlatform) {
     return Platform::PLATFORM_CUSTOM;
   }
-#endif  // TRITON_ENABLE_CUSTOM
 
-#ifdef TRITON_ENABLE_ONNXRUNTIME
   if (platform_str == kOnnxRuntimeOnnxPlatform) {
     return Platform::PLATFORM_ONNXRUNTIME_ONNX;
   }
-#endif  // TRITON_ENABLE_ONNXRUNTIME
 
-#ifdef TRITON_ENABLE_PYTORCH
   if (platform_str == kPyTorchLibTorchPlatform) {
     return Platform::PLATFORM_PYTORCH_LIBTORCH;
   }
-#endif  // TRITON_ENABLE_PYTORCH
 
-#ifdef TRITON_ENABLE_ENSEMBLE
   if (platform_str == kEnsemblePlatform) {
     return Platform::PLATFORM_ENSEMBLE;
   }
-#endif  // TRITON_ENABLE_ENSEMBLE
 
   return Platform::PLATFORM_UNKNOWN;
 }
@@ -259,30 +245,22 @@ GetPlatform(const std::string& platform_str)
 BackendType
 GetBackendTypeFromPlatform(const std::string& platform_name)
 {
-#ifdef TRITON_ENABLE_TENSORFLOW
   if ((platform_name == kTensorFlowGraphDefPlatform) ||
       (platform_name == kTensorFlowSavedModelPlatform)) {
     return BackendType::BACKEND_TYPE_TENSORFLOW;
   }
-#endif  // TRITON_ENABLE_TENSORFLOW
 
-#ifdef TRITON_ENABLE_TENSORRT
   if (platform_name == kTensorRTPlanPlatform) {
     return BackendType::BACKEND_TYPE_TENSORRT;
   }
-#endif  // TRITON_ENABLE_TENSORRT
 
-#ifdef TRITON_ENABLE_ONNXRUNTIME
   if (platform_name == kOnnxRuntimeOnnxPlatform) {
     return BackendType::BACKEND_TYPE_ONNXRUNTIME;
   }
-#endif  // TRITON_ENABLE_ONNXRUNTIME
 
-#ifdef TRITON_ENABLE_PYTORCH
   if (platform_name == kPyTorchLibTorchPlatform) {
     return BackendType::BACKEND_TYPE_PYTORCH;
   }
-#endif  // TRITON_ENABLE_PYTORCH
 
   return BackendType::BACKEND_TYPE_UNKNOWN;
 }
@@ -294,29 +272,21 @@ GetBackendTypeFromPlatform(const std::string& platform_name)
 BackendType
 GetBackendType(const std::string& backend_name)
 {
-#ifdef TRITON_ENABLE_TENSORFLOW
   if (backend_name == kTensorFlowBackend) {
     return BackendType::BACKEND_TYPE_TENSORFLOW;
   }
-#endif  // TRITON_ENABLE_TENSORFLOW
 
-#ifdef TRITON_ENABLE_TENSORRT
   if (backend_name == kTensorRTBackend) {
     return BackendType::BACKEND_TYPE_TENSORRT;
   }
-#endif  // TRITON_ENABLE_TENSORRT
 
-#ifdef TRITON_ENABLE_ONNXRUNTIME
   if (backend_name == kOnnxRuntimeBackend) {
     return BackendType::BACKEND_TYPE_ONNXRUNTIME;
   }
-#endif  // TRITON_ENABLE_ONNXRUNTIME
 
-#ifdef TRITON_ENABLE_PYTORCH
   if (backend_name == kPyTorchBackend) {
     return BackendType::BACKEND_TYPE_PYTORCH;
   }
-#endif  // TRITON_ENABLE_PYTORCH
 
   return BackendType::BACKEND_TYPE_UNKNOWN;
 }
@@ -618,4 +588,4 @@ TritonToDataType(const TRITONSERVER_DataType dtype)
   return inference::DataType::TYPE_INVALID;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

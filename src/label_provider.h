@@ -28,10 +28,10 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include "src/core/constants.h"
-#include "src/core/status.h"
+#include "constants.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 // Provides classification labels.
 class LabelProvider {
@@ -62,4 +62,4 @@ class LabelProvider {
   std::unordered_map<std::string, std::vector<std::string>> label_map_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

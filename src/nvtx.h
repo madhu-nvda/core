@@ -28,9 +28,9 @@
 #ifdef TRITON_ENABLE_NVTX
 
 #include <nvtx3/nvToolsExt.h>
-#include "src/core/logging.h"
+#include "logging.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 // Updates a server stat with duration measured by a C++ scope.
 class NvtxRange {
@@ -54,7 +54,7 @@ class NvtxRange {
   int depth_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
 
 #endif  // TRITON_ENABLE_NVTX
 
@@ -63,7 +63,7 @@ class NvtxRange {
 //
 #ifdef TRITON_ENABLE_NVTX
 #define NVTX_INITIALIZE nvtxInitialize(nullptr)
-#define NVTX_RANGE(V, L) nvidia::inferenceserver::NvtxRange V(L)
+#define NVTX_RANGE(V, L) triton::core::NvtxRange V(L)
 #define NVTX_MARKER(L) nvtxMarkA(L)
 #else
 #define NVTX_INITIALIZE

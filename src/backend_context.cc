@@ -24,14 +24,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/backend_context.h"
+#include "backend_context.h"
 
-#include "src/core/cuda_utils.h"
-#include "src/core/logging.h"
-#include "src/core/metric_model_reporter.h"
-#include "src/core/nvtx.h"
+#include "cuda_utils.h"
+#include "logging.h"
+#include "metric_model_reporter.h"
+#include "nvtx.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -1087,4 +1087,4 @@ BackendInputCollector::FlushPendingPinned(
   return cuda_copy;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

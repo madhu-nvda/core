@@ -29,12 +29,12 @@
 
 #include <deque>
 #include <unordered_map>
-#include "src/core/model_config.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/model_repository_manager.h"
-#include "src/core/status.h"
+#include "model_config.h"
+#include "model_config.pb.h"
+#include "model_repository_manager.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 /// Validate that the ensembles are specified correctly. Assuming that the
 /// inputs and outputs specified in all model configurations are accurate.
@@ -43,6 +43,6 @@ namespace nvidia { namespace inferenceserver {
 void ValidateEnsembleConfig(
     std::set<ModelRepositoryManager::DependencyNode*>* affected_ensembles);
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
 
 #endif  // TRITON_ENABLE_ENSEMBLE

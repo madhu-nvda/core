@@ -24,14 +24,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/label_provider.h"
+#include "label_provider.h"
 
 #include <iostream>
 #include <iterator>
 #include <sstream>
-#include "src/core/filesystem.h"
+#include "filesystem.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 const std::string&
 LabelProvider::GetLabel(const std::string& name, size_t index) const
@@ -92,4 +92,4 @@ LabelProvider::AddLabels(
   return Status::Success;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

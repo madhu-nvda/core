@@ -25,16 +25,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#include "src/core/pinned_memory_manager.h"
+#include "pinned_memory_manager.h"
 
 #include <sstream>
-#include "src/core/logging.h"
+#include "logging.h"
 
 #ifdef TRITON_ENABLE_GPU
 #include <cuda_runtime_api.h>
 #endif  // TRITON_ENABLE_GPU
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -226,4 +226,4 @@ PinnedMemoryManager::Free(void* ptr)
   return instance_->FreeInternal(ptr);
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

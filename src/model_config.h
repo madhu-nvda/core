@@ -27,10 +27,10 @@
 
 #include <google/protobuf/any.pb.h>
 #include <stdint.h>
-#include "src/core/model_config.pb.h"
+#include "model_config.pb.h"
 #include "triton/core/tritonserver.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 /// The type for a repeated dims field (used for shape).
 using DimsList = ::google::protobuf::RepeatedField<::google::protobuf::int64>;
@@ -61,45 +61,23 @@ constexpr int WILDCARD_DIM = -1;
 /// Enumeration for the different platform types.
 enum Platform {
   PLATFORM_UNKNOWN = 0,
-#ifdef TRITON_ENABLE_TENSORRT
   PLATFORM_TENSORRT_PLAN = 1,
-#endif  // TRITON_ENABLE_TENSORRT
-#ifdef TRITON_ENABLE_TENSORFLOW
   PLATFORM_TENSORFLOW_GRAPHDEF = 2,
   PLATFORM_TENSORFLOW_SAVEDMODEL = 3,
-#endif  // TRITON_ENABLE_TENSORFLOW
-#ifdef TRITON_ENABLE_CAFFE2
   PLATFORM_CAFFE2_NETDEF = 4,
-#endif  // TRITON_ENABLE_CAFFE2
-#ifdef TRITON_ENABLE_CUSTOM
   PLATFORM_CUSTOM = 5,
-#endif  // TRITON_ENABLE_CUSTOM
-#ifdef TRITON_ENABLE_ENSEMBLE
   PLATFORM_ENSEMBLE = 6,
-#endif  // TRITON_ENABLE_ENSEMBLE
-#ifdef TRITON_ENABLE_ONNXRUNTIME
   PLATFORM_ONNXRUNTIME_ONNX = 7,
-#endif  // TRITON_ENABLE_ONNXRUNTIME
-#ifdef TRITON_ENABLE_PYTORCH
   PLATFORM_PYTORCH_LIBTORCH = 8
-#endif  // TRITON_ENABLE_PYTORCH
 };
 
 /// Enumeration for the different backend types.
 enum BackendType {
   BACKEND_TYPE_UNKNOWN = 0,
-#ifdef TRITON_ENABLE_TENSORRT
   BACKEND_TYPE_TENSORRT = 1,
-#endif  // TRITON_ENABLE_TENSORRT
-#ifdef TRITON_ENABLE_TENSORFLOW
   BACKEND_TYPE_TENSORFLOW = 2,
-#endif  // TRITON_ENABLE_TENSORFLOW
-#ifdef TRITON_ENABLE_ONNXRUNTIME
   BACKEND_TYPE_ONNXRUNTIME = 3,
-#endif  // TRITON_ENABLE_ONNXRUNTIME
-#ifdef TRITON_ENABLE_PYTORCH
   BACKEND_TYPE_PYTORCH = 4
-#endif  // TRITON_ENABLE_PYTORCH
 };
 
 /// Get the number of elements in a shape.
@@ -304,4 +282,4 @@ TRITONSERVER_DataType DataTypeToTriton(const inference::DataType dtype);
 /// \return The data type.
 inference::DataType TritonToDataType(const TRITONSERVER_DataType dtype);
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

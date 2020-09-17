@@ -24,13 +24,13 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/scheduler_utils.h"
+#include "scheduler_utils.h"
 
 #include <cassert>
-#include "src/core/constants.h"
-#include "src/core/logging.h"
+#include "constants.h"
+#include "logging.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 Status
 InitRequiredEqualInputs(
@@ -394,4 +394,4 @@ PriorityQueue::AdvanceCursor()
        pending_cursor_.curr_it_->second.UnexpiredSize());
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

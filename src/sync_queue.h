@@ -29,7 +29,7 @@
 #include <deque>
 #include <mutex>
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 //
 // C++11 doesn't have a sync queue so we implement a simple one.
@@ -80,4 +80,4 @@ class SyncQueue {
   std::deque<Item> queue_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

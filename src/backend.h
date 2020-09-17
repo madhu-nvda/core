@@ -25,14 +25,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma once
 
-#include "src/core/backend_context.h"
-#include "src/core/infer_stats.h"
-#include "src/core/label_provider.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/scheduler.h"
-#include "src/core/status.h"
+#include "backend_context.h"
+#include "infer_stats.h"
+#include "label_provider.h"
+#include "model_config.pb.h"
+#include "scheduler.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 #ifdef TRITON_ENABLE_STATS
 #define FAIL_ALL_AND_RETURN_IF_ERROR(REQUESTS, RESPONSES, MR, S, LOG_MSG)    \
@@ -221,4 +221,4 @@ class InferenceBackend {
   uint32_t max_priority_level_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

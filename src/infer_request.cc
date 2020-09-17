@@ -24,14 +24,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/infer_request.h"
+#include "infer_request.h"
 
 #include <deque>
-#include "src/core/backend.h"
-#include "src/core/logging.h"
-#include "src/core/server.h"
+#include "backend.h"
+#include "logging.h"
+#include "server.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -871,4 +871,4 @@ operator<<(std::ostream& out, const InferenceRequest::Input& input)
   return out;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

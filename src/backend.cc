@@ -24,19 +24,19 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/backend.h"
+#include "backend.h"
 
 #include <chrono>
 #include <future>
-#include "src/core/constants.h"
-#include "src/core/dynamic_batch_scheduler.h"
-#include "src/core/filesystem.h"
-#include "src/core/infer_request.h"
-#include "src/core/logging.h"
-#include "src/core/model_config_utils.h"
-#include "src/core/sequence_batch_scheduler.h"
+#include "constants.h"
+#include "dynamic_batch_scheduler.h"
+#include "filesystem.h"
+#include "infer_request.h"
+#include "logging.h"
+#include "model_config_utils.h"
+#include "sequence_batch_scheduler.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -500,4 +500,4 @@ InferenceBackend::GenerateWarmupData(std::vector<WarmupData>* samples)
   return Status::Success;
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

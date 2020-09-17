@@ -24,19 +24,19 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "src/core/dynamic_batch_scheduler.h"
+#include "dynamic_batch_scheduler.h"
 
 #include <sys/resource.h>
 #include <sys/syscall.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include "src/core/constants.h"
-#include "src/core/logging.h"
-#include "src/core/model_config.h"
-#include "src/core/nvtx.h"
+#include "constants.h"
+#include "logging.h"
+#include "model_config.h"
+#include "nvtx.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 DynamicBatchScheduler::DynamicBatchScheduler(
     const uint32_t runner_id_start, const uint32_t runner_cnt,
@@ -623,4 +623,4 @@ DynamicBatchScheduler::FinalizeResponses()
   }
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

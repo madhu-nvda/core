@@ -29,11 +29,11 @@
 #include <map>
 #include <memory>
 #include <mutex>
-#include "src/core/constants.h"
-#include "src/core/status.h"
+#include "constants.h"
+#include "status.h"
 #include "triton/core/tritonserver.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class MetricModelReporter;
 
@@ -160,4 +160,4 @@ class InferenceStatsAggregator {
 #define INFER_STATS_SET_TIMESTAMP(TS_NS)
 #endif  // TRITON_ENABLE_STATS
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

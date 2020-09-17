@@ -34,13 +34,13 @@
 #include <queue>
 #include <thread>
 #include <unordered_map>
-#include "src/core/model_config.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/scheduler.h"
-#include "src/core/scheduler_utils.h"
-#include "src/core/status.h"
+#include "model_config.h"
+#include "model_config.pb.h"
+#include "scheduler.h"
+#include "scheduler_utils.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class SequenceBatch;
 
@@ -338,4 +338,4 @@ class OldestSequenceBatch : public SequenceBatch {
   std::vector<std::deque<std::unique_ptr<InferenceRequest>>> queues_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

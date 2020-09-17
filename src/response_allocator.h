@@ -27,7 +27,7 @@
 
 #include "triton/core/tritonserver.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 //
 // Implementation for TRITONSERVER_ResponseAllocator.
@@ -55,4 +55,4 @@ class ResponseAllocator {
   TRITONSERVER_ResponseAllocatorStartFn_t start_fn_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

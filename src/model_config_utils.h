@@ -25,11 +25,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma once
 
-#include "src/core/model_config.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/status.h"
+#include "model_config.h"
+#include "model_config.pb.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 /// Get version of a model from the path containing the model
 /// definition file.
@@ -195,4 +195,4 @@ Status JsonToModelConfig(
     const std::string& json_config, const uint32_t config_version,
     inference::ModelConfig* protobuf_config);
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

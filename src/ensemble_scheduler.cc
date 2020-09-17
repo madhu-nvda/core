@@ -26,16 +26,16 @@
 
 #ifdef TRITON_ENABLE_ENSEMBLE
 
-#include "src/core/ensemble_scheduler.h"
+#include "ensemble_scheduler.h"
 
 #include <mutex>
-#include "src/core/backend.h"
-#include "src/core/cuda_utils.h"
-#include "src/core/logging.h"
-#include "src/core/metrics.h"
-#include "src/core/server.h"
+#include "backend.h"
+#include "cuda_utils.h"
+#include "logging.h"
+#include "metrics.h"
+#include "server.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 namespace {
 
@@ -1272,6 +1272,6 @@ EnsembleScheduler::~EnsembleScheduler()
 #endif  // TRITON_ENABLE_GPU
 }
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
 
 #endif  // TRITON_ENABLE_ENSEMBLE

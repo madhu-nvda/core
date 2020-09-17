@@ -29,16 +29,16 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include "src/core/infer_response.h"
-#include "src/core/infer_stats.h"
-#include "src/core/infer_trace.h"
-#include "src/core/memory.h"
-#include "src/core/model_config.h"
-#include "src/core/response_allocator.h"
-#include "src/core/status.h"
+#include "infer_response.h"
+#include "infer_stats.h"
+#include "infer_trace.h"
+#include "memory.h"
+#include "model_config.h"
+#include "response_allocator.h"
+#include "status.h"
 #include "triton/core/tritonserver.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 class InferenceBackend;
 class InferenceServer;
@@ -540,4 +540,4 @@ std::ostream& operator<<(std::ostream& out, const InferenceRequest& request);
 std::ostream& operator<<(
     std::ostream& out, const InferenceRequest::Input& input);
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core

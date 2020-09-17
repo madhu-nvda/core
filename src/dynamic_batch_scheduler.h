@@ -34,13 +34,13 @@
 #include <queue>
 #include <set>
 #include <thread>
-#include "src/core/model_config.h"
-#include "src/core/model_config.pb.h"
-#include "src/core/scheduler.h"
-#include "src/core/scheduler_utils.h"
-#include "src/core/status.h"
+#include "model_config.h"
+#include "model_config.pb.h"
+#include "scheduler.h"
+#include "scheduler_utils.h"
+#include "status.h"
 
-namespace nvidia { namespace inferenceserver {
+namespace triton { namespace core {
 
 // Scheduler that implements dynamic batching.
 class DynamicBatchScheduler : public Scheduler {
@@ -152,4 +152,4 @@ class DynamicBatchScheduler : public Scheduler {
   std::mutex completion_queue_mtx_;
 };
 
-}}  // namespace nvidia::inferenceserver
+}}  // namespace triton::core
